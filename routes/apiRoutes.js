@@ -1,10 +1,9 @@
 // routes/apiRoutes.js
 const express = require("express");
+const { v4: uuidv4 } = require("uuid"); // Import uuidv4 from uuid package
 const store = require("../db/store");
 
 const router = express.Router();
-
-let currentId = 1; // Initial ID value
 
 // GET /api/notes - Get all notes
 router.get("/notes", async (req, res) => {
@@ -20,7 +19,7 @@ router.get("/notes", async (req, res) => {
 router.post("/notes", async (req, res) => {
   try {
     const newNote = req.body;
-    newNote.id = currentId++; // Assign current ID and then increment
+    newNote.id = uuidv4(); // Generate unique ID using uuidv4
     const notes = await store.readNotesFromFile();
     notes.push(newNote);
     await store.writeNotesToFile(notes);
