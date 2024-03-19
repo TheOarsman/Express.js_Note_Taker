@@ -1,6 +1,6 @@
 // routes/htmlRoutes.js
 const path = require("path");
-const router = express.Router();
+const router = require("express").Router();
 
 // GET /notes - Return the notes page
 router.get("/notes", (req, res) => {
