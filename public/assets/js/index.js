@@ -78,10 +78,23 @@ const handleNoteSave = () => {
     title: noteTitle.value,
     text: noteText.value,
   };
-  saveNote(newNote).then(() => {
-    getAndRenderNotes();
-    renderActiveNote();
-  });
+  saveNote(newNote)
+    .then((response) => response.json())
+    .then((savedNote) => {
+      // Add the saved note to the note list
+      appendNoteToList(savedNote);
+      // Clear the form after saving
+      noteTitle.value = "";
+      noteText.value = "";
+    })
+    .catch((error) => console.error("Error saving note:", error));
+};
+
+// Function to append a note to the note list
+const appendNoteToList = (note) => {
+  const noteListItem = createLi(note.title);
+  noteListItem.dataset.note = JSON.stringify(note);
+  noteList[0].appendChild(noteListItem); // Assuming noteList is an array, so using the first element
 };
 
 // Delete the clicked note
