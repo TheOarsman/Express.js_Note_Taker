@@ -2,9 +2,13 @@
 
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-[Note Taker](https://memosphere-a4428ea90189.herokuapp.com/)<br>
+[Note Taker](https://memosphere-a4428ea90189.herokuapp.com/)
 
-<img src="Blockbuster_logo.svg.png" width="275" height="175">
+![Note Take Home Page](public/assets/images/noteTakerHome.png)
+
+![Viewing Notes](public/assets/images/viewNotes.png)
+
+![New Note](public/assets/images/newNote.png)
 
 ## Description
 
