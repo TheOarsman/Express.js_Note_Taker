@@ -30,7 +30,8 @@ const hide = (elem) => {
 let activeNote = {};
 
 const getNotes = () =>
-  fetch("/api/notes", {
+  fetch(`/api/notes?timestamp=${Date.now()}`, {
+    // Append timestamp as a query parameter
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -73,7 +74,6 @@ const renderActiveNote = () => {
   }
 };
 
-// Handle saving a new note
 const handleNoteSave = () => {
   const newNote = {
     title: noteTitle.value,
@@ -85,6 +85,8 @@ const handleNoteSave = () => {
       appendNoteToList(savedNote);
       noteTitle.value = "";
       noteText.value = "";
+      noteForm.reset(); // Reset the form dynamically
+      getAndRenderNotes(); // Render the updated list of notes
     })
     .catch((error) => console.error("Error saving note:", error));
 };

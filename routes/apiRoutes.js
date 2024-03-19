@@ -5,6 +5,9 @@ const router = express.Router();
 
 // Route to get notes from db.json
 router.get("/notes", (req, res) => {
+  // Set cache-control headers to disable caching
+  res.setHeader("Cache-Control", "no-store, max-age=0");
+
   fs.readFile(
     path.join(__dirname, "..", "db", "db.json"),
     "utf8",
