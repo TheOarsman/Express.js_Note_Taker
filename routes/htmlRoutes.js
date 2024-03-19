@@ -1,15 +1,17 @@
+// routes/htmlRoutes.js
 const path = require("path");
 const express = require("express");
+
 const router = express.Router();
 
-// Route to serve notes.html
+// GET /notes - Return the notes page
 router.get("/notes", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "public", "notes.html"));
+  res.sendFile(path.join(__dirname, "../public/notes.html"));
 });
 
-// Route to serve index.html for all other routes
+// GET * - Return the homepage
 router.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "public", "index.html"));
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 module.exports = router;

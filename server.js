@@ -1,22 +1,25 @@
+// server.js
 const express = require("express");
-const htmlRoutes = require("./routes/htmlRoutes");
 const apiRoutes = require("./routes/apiRoutes");
+const htmlRoutes = require("./routes/htmlRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware for JSON parsing
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files
 app.use(express.static("public"));
 
-// Use route handlers
+// API routes
 app.use("/api", apiRoutes);
+
+// HTML routes
 app.use("/", htmlRoutes);
 
-// Start the server
+// Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

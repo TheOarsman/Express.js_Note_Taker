@@ -1,63 +1,33 @@
-const fs = require("fs");
-const path = require("path");
+// routes/apiRoutes.js
 const express = require("express");
+const store = require("../db/store");
+
 const router = express.Router();
 
-// Route to get notes from db.json
-router.get("/notes", (req, res) => {
-  // Set cache-control headers to disable caching
-  res.setHeader("Cache-Control", "no-store, max-age=0");
+let currentId = 1; // Initial ID value
 
-  fs.readFile(
-    path.join(__dirname, "..", "db", "db.json"),
-    "utf8",
-    (err, data) => {
-      if (err) throw err;
-      const notes = JSON.parse(data);
-      res.json(notes);
-    }
-  );
+// GET /api/notes - Get all notes
+router.get("/notes", async (req, res) => {
+  try {
+    const notes = await store.readNotesFromFile();
+    res.json(notes);
+  } catch (error) {
+    res.status(500).send("Server Error");
+  }
 });
 
-// Route to add a new note to db.json
-router.post("/notes", (req, res) => {
-  // Read existing notes from the database
-  fs.readFile(
-    path.join(__dirname, "..", "db", "db.json"),
-    "utf8",
-    (err, data) => {
-      if (err) throw err;
-
-      // Parse existing notes
-      const notes = JSON.parse(data);
-
-      // Create a new note object from the request body
-      const newNote = req.body;
-
-      // Generate a unique ID for the new note (assuming notes already have unique IDs)
-      const newNoteId = Math.max(...notes.map((note) => note.id), 0) + 1;
-      newNote.id = newNoteId;
-
-      // Add the new note to the array of notes
-      notes.push(newNote);
-
-      // Write the updated notes array back to the database file
-      fs.writeFile(
-        path.join(__dirname, "..", "db", "db.json"),
-        JSON.stringify(notes),
-        (err) => {
-          if (err) throw err;
-          // Respond with the newly created note
-          res.json(newNote);
-        }
-      );
-    }
-  );
-});
-
-// Route to delete a note from db.json
-router.delete("/notes/:id", (req, res) => {
-  // Implementation remains the same as before
+// POST /api/notes - Create a new note
+router.post("/notes", async (req, res) => {
+  try {
+    const newNote = req.body;
+    newNote.id = currentId++; // Assign current ID and then increment
+    const notes = await store.readNotesFromFile();
+    notes.push(newNote);
+    await store.writeNotesToFile(notes);
+    res.json(newNote);
+  } catch (error) {
+    res.status(500).send("Server Error");
+  }
 });
 
 module.exports = router;
