@@ -1,16 +1,12 @@
 [
   {
-    "title": "Test Title",
-    "text": "Test text"
+    "title": "Testing",
+    "text": "Test",
+    "id": "6656d055-3e37-4cc1-b9db-b1b7565aa857"
   },
   {
-    "title": "Kids Ready For School",
-    "text": "* Wake Up Kids\n* Get Kids to Bus",
-    "id": 2
-  },
-  {
-    "title": "Test",
-    "text": "Testing",
-    "id": 3
+    "title": "New Test",
+    "text": "Test asgain",
+    "id": "e732e7dc-c02d-4ee0-8dac-835c674be482"
   }
 ]

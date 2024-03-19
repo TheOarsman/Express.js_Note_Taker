@@ -1,42 +1,41 @@
 const router = require("express").Router();
-const store = require("../db/store");
+const { readNotesFromFile, writeNotesToFile } = require("../db/store");
+const { v4: uuidv4 } = require("uuid");
 
-// GET "/api/notes" responds with all notes from the database
-router.get("/notes", (req, res) => {
-  store
-    .readNotesFromFile()
-    .then((notes) => res.json(notes))
-    .catch((err) => res.status(500).json(err));
+// GET /api/notes - Get all notes
+router.get("/notes", async (req, res) => {
+  try {
+    const notes = await readNotesFromFile();
+    res.json(notes);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to read notes from the database." });
+  }
 });
 
-// POST "/api/notes" adds a new note to the database
-router.post("/notes", (req, res) => {
-  store
-    .readNotesFromFile()
-    .then((notes) => {
-      const newNote = req.body;
-      newNote.id = uuidv4(); // Generate unique ID using uuidv4
-      notes.push(newNote);
-      store
-        .writeNotesToFile(notes)
-        .then(() => res.json(newNote))
-        .catch((err) => res.status(500).json(err));
-    })
-    .catch((err) => res.status(500).json(err));
+// POST /api/notes - Save a new note
+router.post("/notes", async (req, res) => {
+  try {
+    const newNote = req.body;
+    newNote.id = uuidv4(); // Add a unique id to the note
+    const notes = await readNotesFromFile();
+    notes.push(newNote);
+    await writeNotesToFile(notes);
+    res.json(newNote);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to save the note." });
+  }
 });
 
-// DELETE "/api/notes/:id" deletes the note with the specified id
-router.delete("/notes/:id", (req, res) => {
-  store
-    .readNotesFromFile()
-    .then((notes) => {
-      const updatedNotes = notes.filter((note) => note.id !== req.params.id);
-      store
-        .writeNotesToFile(updatedNotes)
-        .then(() => res.json({ ok: true }))
-        .catch((err) => res.status(500).json(err));
-    })
-    .catch((err) => res.status(500).json(err));
+// DELETE /api/notes/:id - Delete a note by id
+router.delete("/notes/:id", async (req, res) => {
+  try {
+    const notes = await readNotesFromFile();
+    const updatedNotes = notes.filter((note) => note.id !== req.params.id);
+    await writeNotesToFile(updatedNotes);
+    res.json({ message: "Note deleted successfully." });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete the note." });
+  }
 });
 
 module.exports = router;
