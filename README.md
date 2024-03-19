@@ -8,15 +8,14 @@
 
 ## Description
 
-A web application focused on Movies! This is a throw back built from the
-foundation of BLOCKBUSTER. Back when you used to look forward to going
-out to pick up that new VHS release, which has now disappeared. Streaming
-services has since killed the once beloved BLOCKBUSTER. Either way we
-wanted to create a fun interactive site which allows users to be able to
-research various movies, then can create a watch list and top favorite list.
-Not to mention how many books were written and then made into movie,
-how great would it be to search for that book too! If you don’t have wifi the
-book for the win!
+The Note Taker is a simple web application that allows users to write, save, and delete notes. It provides a convenient way for small business owners or individuals to organize their thoughts, keep track of tasks, and manage important information.
+
+**Features**
+
+- **Create Notes**: Users can easily create new notes by entering a title and the note's text in the designated input fields.
+- **Save Notes**: The application provides a "Save Note" button that allows users to save their newly created notes.
+- **View Notes**: Existing notes are displayed in the left-hand column of the application's interface, providing users with quick access to their saved notes.
+- **Delete Notes**: Users can delete unwanted notes by clicking on a delete button associated with each note in the list.
 
 ## Table of Contents
 
@@ -67,27 +66,57 @@ book for the win!
 
 ## Installation
 
-1. Clone the repository to your local machine: `git clone https://github.com/TheOarsman/Blockbuster2024.git`
+To get started with the Note Taker application, follow these steps:
 
-2. Navigate to the project directory: `cd HUV-Portfolio`
+1. Clone the repository: `git clone https://github.com/TheOarsman/Express.js_Note_Taker.git`
+2. Navigate to the project directory: `cd Express.js_Note_Taker`
 
 3. Install dependencies: `npm install`
 
-**THIS IS ALL FILLER FOR NOW!!!**
+4. Start the server: `node server.js`
+
+5. Access the application:
+   - Open your web browser and go to `http://localhost:3000` to access the Note Taker application.
 
 ## Development
 
-To start the development server and run the project locally, execute the following command: `DEVELOP THIS!!!`
+If you want to contribute to the development of the Note Taker application or customize it for your own needs, follow these steps:
 
-Then later the real information will go here!!!
+1. Fork the repository:
 
-**THIS IS ALL FILLER FOR NOW!!!**
+   - Click the "Fork" button at the top right corner of the repository page on GitHub to create your own copy of the repository.
+
+2. Clone your forked repository: `git clone https://github.com/TheOarsman/Express.js_Note_Taker.git`
+
+3. Navigate to the project directory: `cd note-taker`
+
+4. Install dependencies: `npm install`
+
+5. Make your changes:
+
+   - Modify the existing code or add new features as needed.
+   - Ensure that your changes follow the coding standards and conventions used in the project.
+
+6. Test your changes:
+
+   - Run any necessary tests to ensure that your changes work as expected.
+   - Use `npm test` if there are any tests included in the project.
+
+7. Commit your changes:<br>
+   `git add .`<br>
+   `git commit -m "Your descriptive commit message"`
+
+8. Push your changes to GitHub: `git push origin main`
+
+9. Create a Pull Request:
+   - Go to your forked repository on GitHub.
+   - Click the "New Pull Request" button.
+   - Provide a title and description for your pull request, explaining your changes.
+   - Click the "Create Pull Request" button to submit your contribution for review.
 
 ## Usage
 
 Use it!
-
-**THIS IS ALL FILLER FOR NOW!!!**
 
 ## Technologies
 
@@ -96,6 +125,8 @@ Use it!
 ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
 
 ![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)
+
+![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 
